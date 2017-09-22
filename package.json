@@ -1,0 +1,51 @@
+{
+  "name": "book-trading-club",
+  "version": "1.0.0",
+  "description": "Book-Trading-Club Freecode camp exercise",
+  "private": true,
+  "scripts": {
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js"
+  },
+  "engines": {
+    "node": "^8.0.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.1",
+    "chalk": "^2.1.0",
+    "cors": "^2.8.4",
+    "express": "~4.15.2",
+    "jsonwebtoken": "^8.0.1",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.11",
+    "morgan": "^1.8.2",
+    "url-parse": "^1.1.9"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^10.2.1",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^3.2.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-vue": "beta",
+    "eslint": "^4.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mubaidr/Book-Trading-Club.git"
+  },
+  "keywords": [
+    "freecodecamp",
+    "nodejs"
+  ],
+  "author": "mubaidr@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mubaidr/Book-Trading-Club/issues"
+  },
+  "homepage": "https://github.com/mubaidr/Book-Trading-Club#readme"
+}

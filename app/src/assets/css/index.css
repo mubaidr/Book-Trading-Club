@@ -1,0 +1,12 @@
+body {
+  padding-bottom: 190px;
+}
+
+.list-group a {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.badge {
+  padding: 7px;
+}
