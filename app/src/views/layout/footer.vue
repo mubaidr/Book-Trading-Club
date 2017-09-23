@@ -6,7 +6,7 @@
                     <h5>About</h5>
                     <ul>
                         <li>
-                            <a href="https://github.com/mubaidr/Book-Trading-Club#voting-app">Service</a>
+                            <a href="https://github.com/mubaidr/Book-Trading-Club#Book-Trading-Club">Service</a>
                         </li>
                         <li>
                             <a href="https://github.com/mubaidr/Book-Trading-Club">Source Code</a>

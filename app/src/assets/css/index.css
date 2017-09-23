@@ -2,6 +2,10 @@ body {
   padding-bottom: 190px;
 }
 
+.navbar-brand {
+  color: #18bc9c!important;
+}
+
 .list-group a {
   margin-bottom: 10px;
   display: block;

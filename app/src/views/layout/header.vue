@@ -23,7 +23,7 @@
       <ul class="nav navbar-nav pull-right">
         <template v-if="isAuthenticated">
           <li>
-            <a @click.prevent.stop="logout">Logout</a>
+            <a href="#" @click.prevent.stop="logout">Logout</a>
           </li>
         </template>
         <template v-else>
