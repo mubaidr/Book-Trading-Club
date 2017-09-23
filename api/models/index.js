@@ -35,6 +35,10 @@ let bookSchema = new mongoose.Schema({
   borrower: {
     type: String,
     required: true
+  },
+  isAvailable: {
+    type: Boolean,
+    required: true
   }
 })
 
@@ -52,7 +56,7 @@ let borrowRequestSchema = new mongoose.Schema({
     required: true
   },
   isCompleted: {
-    type: String,
+    type: Boolean,
     required: true
   }
 })

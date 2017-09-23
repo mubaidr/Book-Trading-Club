@@ -5,6 +5,20 @@
         <router-link to="/home" class="navbar-brand">Open Book Store</router-link>
       </div>
       <ul class="nav navbar-nav">
+        <li>
+          <router-link to="/all-books">View All Books</router-link>
+        </li>
+        <template v-if="isAuthenticated">
+          <li>
+            <router-link to="/my-books">My Collection</router-link>
+          </li>
+          <li>
+            <router-link to="/all-requests">Borrow Requests</router-link>
+          </li>
+          <li>
+            <router-link to="/my-requests">My Requests Status</router-link>
+          </li>
+        </template>
       </ul>
       <ul class="nav navbar-nav pull-right">
         <template v-if="isAuthenticated">
