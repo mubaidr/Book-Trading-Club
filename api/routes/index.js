@@ -2,11 +2,13 @@ const chalk = require('chalk')
 const router = require('express').Router()
 
 const authRoutes = require('./auth')
-const userRoutes = require('./user')
+const userRoutes = require('./users')
+const bookRoutes = require('./books')
 
 /* Register model routes */
 router.use(authRoutes)
 router.use(userRoutes)
+router.use(bookRoutes)
 
 /* 404 */
 router.get('*', (req, res) => {

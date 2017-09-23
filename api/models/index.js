@@ -19,12 +19,54 @@ let userSchema = new mongoose.Schema({
   }
 })
 
+let bookSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  author: {
+    type: String,
+    required: true
+  },
+  owner: {
+    type: String,
+    required: true
+  },
+  borrower: {
+    type: String,
+    required: true
+  }
+})
+
+let borrowRequestSchema = new mongoose.Schema({
+  book: {
+    type: String,
+    required: true
+  },
+  owner: {
+    type: String,
+    required: true
+  },
+  borrower: {
+    type: String,
+    required: true
+  },
+  isCompleted: {
+    type: String,
+    required: true
+  }
+})
+
 let userModel = mongoose.model('User', userSchema)
+let bookModel = mongoose.model('Book', bookSchema)
+let borrowRequestModel = mongoose.model('borrowRequest', borrowRequestSchema)
 
 // voteSchema.pre('save', next => {
 //   next()
 // })
 
 module.exports = {
-  User: userModel
+  User: userModel,
+  Book: bookModel,
+  BorrowRequest: borrowRequestModel
 }
