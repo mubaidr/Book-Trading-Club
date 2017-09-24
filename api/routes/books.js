@@ -1,9 +1,7 @@
 const router = require('express').Router()
 
-router.get('/api/book/:user', (req, res) => {})
+router.get('/api/books/:id', (req, res) => {})
 
-router.get('/api/book/', (req, res) => {})
-
-router.post('/api/book/', (req, res) => {})
+router.post('/api/books/', (req, res) => {})
 
 module.exports = router

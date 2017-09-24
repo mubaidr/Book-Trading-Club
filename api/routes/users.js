@@ -6,4 +6,6 @@ router.get('/api/users/self', (req, res) => {
   res.json(account)
 })
 
+router.get('/api/users/books', (req, res) => {})
+
 module.exports = router
