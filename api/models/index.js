@@ -16,6 +16,14 @@ let userSchema = new mongoose.Schema({
     type: String,
     min: 8,
     required: true
+  },
+  state: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
   }
 })
 
