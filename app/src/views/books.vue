@@ -44,7 +44,7 @@
         axios.get(this.getAPI.url + '/api/books/').then(res => {
           this.books = res.data
         }).catch(err => {
-          console.log('unable to get books', err)
+          console.log(err)
         }).then(() => {
           this.loading = false
         })

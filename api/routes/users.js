@@ -2,20 +2,22 @@ const router = require('express').Router()
 const Books = require('../models').Books
 const Users = require('../models').Users
 
-/*
-router.get('/api/users/self', (req, res) => {
-  let account = req.account
-  delete account.data.password
-  res.json(account)
+router.get('/api/users/self', (req, res, next) => {
+  let id = req.account.data._id
+
+  Users.findById(id).exec((err, user) => {
+    if (err) next(err)
+
+    res.json(user)
+  })
 })
-*/
 
 router.get('/api/users/books', (req, res, next) => {
   let id = req.account.data._id
 
   Books.find({
     owner_id: id
-  }).sort('date_added').exec(function (err, books) {
+  }).sort('date_added').exec((err, books) => {
     if (err) next(err)
 
     res.json(books)
