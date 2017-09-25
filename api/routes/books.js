@@ -14,7 +14,7 @@ router.get('/api/books/self', (req, res, next) => {
 })
 
 router.get('/api/books', (req, res, next) => {
-  let id = req.account.data._id
+  let id = req.account ? req.account.data._id : null
 
   Books.find({
     'owner.$id': {

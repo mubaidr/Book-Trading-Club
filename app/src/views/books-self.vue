@@ -7,21 +7,23 @@
     <div class="progress progress-striped active" v-if="loading">
       <div class="progress-bar" style="width: 45%"></div>
     </div>
-    <div class="row" v-else>
+    <div v-else>
       <template v-if="books && books.length > 0">
-        <div class="col-md-2" v-for="book in books" :key="book._id">
-          <div class="book trade-enable">
-            <div class="trade-controls delete" @click="removeBook(book)">
-              <i class="fa fa-remove" aria-hidden="true"></i>
+        <div class="row">
+          <div class="col-md-2" v-for="book in books" :key="book._id">
+            <div class="book trade-enable">
+              <div class="trade-controls delete" @click="removeBook(book)">
+                <i class="fa fa-remove" aria-hidden="true"></i>
+              </div>
+              <img alt="thumbnail" :title="book.title" :src="book.thumbnail" />
+              <!-- <p class="text-success">{{book.volumeInfo.title}}</p><span class="text-muted">{{getAuthors(book.volumeInfo.authors)}}</span> -->
             </div>
-            <img alt="thumbnail" :title="book.title" :src="book.thumbnail" />
-            <!-- <p class="text-success">{{book.volumeInfo.title}}</p><span class="text-muted">{{getAuthors(book.volumeInfo.authors)}}</span> -->
           </div>
         </div>
       </template>
       <template v-else>
         <div class="alert alert-info">
-          <strong>Oops!</strong>
+          <h3>Oops!</h3>
           <p>No books found!</p>
         </div>
         <router-link to="/books-add">Click here</router-link> to add books.
