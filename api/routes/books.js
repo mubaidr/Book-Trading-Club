@@ -34,6 +34,7 @@ router.get('/api/books/:id', (req, res, next) => {
 router.post('/api/books', (req, res, next) => {
   let book = new Books(req.body)
   book.owner_id = req.account.data._id
+  book.date_added = new Date()
 
   book.save(function (err, book) {
     if (err) next(err)

@@ -7,7 +7,13 @@
     <div class="progress progress-striped active" v-if="loading">
       <div class="progress-bar" style="width: 45%"></div>
     </div>
-    <div v-else>{{books}}
+    <div class="row" v-else>
+      <div class="col-md-2" v-for="book in books" :key="book._id">
+        <div class="book">
+          <img alt="thumbnail" :title="book.title" :src="book.thumbnail" />
+          <!-- <p class="text-success">{{book.volumeInfo.title}}</p><span class="text-muted">{{getAuthors(book.volumeInfo.authors)}}</span> -->
+        </div>
+      </div>
     </div>
   </div>
 </template>
