@@ -47,6 +47,8 @@
     created () { },
     methods: {
       removeBook (book) {
+        if (!confirm("Delete this book form your collection?")) return
+
         this.loading = true
         axios.delete(this.getAPI.url + '/api/books/' + book._id).then(() => {
           this.books = this.books.filter((item) => {

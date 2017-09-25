@@ -25,6 +25,9 @@
       </div>
       <div class="col-md-2" v-for="book in books" :key="book.id" v-if="book.volumeInfo.imageLinks">
         <div class="book add" @click="addBook(book)">
+          <div class="cover">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </div>
           <img alt="thumbnail" :title="book.volumeInfo.title" :src="book.volumeInfo.imageLinks.thumbnail" />
           <!-- <p class="text-success">{{book.volumeInfo.title}}</p><span class="text-muted">{{getAuthors(book.volumeInfo.authors)}}</span> -->
         </div>

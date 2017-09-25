@@ -2,8 +2,11 @@
   <div class="jumbotron">
     <h1>Open Book Club</h1>
     <p>Trade or loan books with other book readers in your area.</p>
+    <br/>
     <p>
-      <a class="btn btn-primary btn-lg" href="https://github.com/mubaidr/book-trading-club">Learn more</a>
+      Get started now:
+      <router-link to="/books">Find some books</router-link> or
+      <router-link to="/books-add">Create your collection</router-link>
     </p>
   </div>
 </template>

@@ -34,8 +34,23 @@
   cursor: pointer;
 }
 
-.book.add:hover {
-  box-shadow: 0 0 10px #2c3e50;
+.book.add .cover {
+  position: absolute;
+  width: 50%;
+  height: 38%;
+  top: 25%;
+  left: 25%;
+  opacity: 0;
+  border-radius: 50%;
+  transition: opacity 0.25s ease-out;
+  font-size: 5em;
+  color: #18bc9c;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.book.add:hover .cover {
+  opacity: 1;
 }
 
 .book img {
