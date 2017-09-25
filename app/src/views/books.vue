@@ -49,8 +49,8 @@
       tradeBook (book) {
         if (this.isAuthenticated) {
           axios.post(this.getAPI.url + '/api/trades/', {
-            book_id: book._id,
-            owner_id: book.owner_id
+            book: book._id,
+            owner: book.owner
           }).then(() => {
             router.push('/trades')
           }).catch(err => {
@@ -63,6 +63,8 @@
       getBooks () {
         axios.get(this.getAPI.url + '/api/books/').then(res => {
           this.books = res.data
+
+          console.log(this.books)
         }).catch(err => {
           console.log(err)
         }).then(() => {

@@ -12,18 +12,6 @@ router.get('/api/users/self', (req, res, next) => {
   })
 })
 
-router.get('/api/users/books', (req, res, next) => {
-  let id = req.account.data._id
-
-  Books.find({
-    owner_id: id
-  }).sort('date_added').exec((err, books) => {
-    if (err) next(err)
-
-    res.json(books)
-  })
-})
-
 router.post('/api/users/', (req, res, next) => {
   let id = req.account.data._id
 

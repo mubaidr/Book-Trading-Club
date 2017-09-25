@@ -6,9 +6,9 @@ router.get('/api/trades', (req, res, next) => {
 
   Trades.find({
     $or: [{
-      'owner_id': id
+      'owner.$id': id
     }, {
-      'trader_id': id
+      'trader.$id': id
     }]
   }).sort('date_added').exec(function (err, trades) {
     if (err) next(err)
@@ -23,7 +23,7 @@ router.post('/api/trades/:id', (req, res, next) => {
   Trades.findById(id).exec(function (err, trade) {
     if (err) next(err)
 
-    if (trade.owner_id === req.account.data._id) {
+    if (trade.owner._id === req.account.data._id) {
       trade.isCompleted = true
 
       trade.save(function (err, updatedTrade) {
@@ -39,7 +39,7 @@ router.post('/api/trades/:id', (req, res, next) => {
 
 router.post('/api/trades/', (req, res, next) => {
   let trade = new Trades(req.body)
-  trade.trader_id = req.account.data_id
+  trade.trader = req.account.data._id
   trade.isCompleted = false
   trade.date_added = new Date()
 

@@ -31,9 +31,9 @@ let bookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  owner_id: {
-    type: String,
-    required: true
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   },
   thumbnail: {
     type: String,
@@ -43,17 +43,17 @@ let bookSchema = new mongoose.Schema({
 })
 
 let tradeSchema = new mongoose.Schema({
-  book_id: {
-    type: String,
-    required: true
+  book: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Book'
   },
-  owner_id: {
-    type: String,
-    required: true
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   },
-  trader_id: {
-    type: String,
-    required: true
+  trader: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   },
   isCompleted: {
     type: Boolean,
