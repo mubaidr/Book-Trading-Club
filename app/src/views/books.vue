@@ -7,15 +7,24 @@
       <div class="progress-bar" style="width: 45%"></div>
     </div>
     <div class="row" v-else>
-      <div class="col-md-2" v-for="book in books" :key="book._id">
-        <div class="book trade-enable">
-          <div class="trade-controls" @click="tradeBook(book)">
-            <i class="fa fa-exchange" aria-hidden="true"></i>
+      <template v-if="books && books.length > 0">
+        <div class="col-md-2" v-for="book in books" :key="book._id">
+          <div class="book trade-enable">
+            <div class="trade-controls" @click="tradeBook(book)">
+              <i class="fa fa-exchange" aria-hidden="true"></i>
+            </div>
+            <img alt="thumbnail" :title="book.title" :src="book.thumbnail" />
+            <!-- <p class="text-success">{{book.volumeInfo.title}}</p><span class="text-muted">{{getAuthors(book.volumeInfo.authors)}}</span> -->
           </div>
-          <img alt="thumbnail" :title="book.title" :src="book.thumbnail" />
-          <!-- <p class="text-success">{{book.volumeInfo.title}}</p><span class="text-muted">{{getAuthors(book.volumeInfo.authors)}}</span> -->
         </div>
-      </div>
+      </template>
+      <template v-else>
+        <div class="alert alert-dismissible alert-info">
+          <strong>Oops!</strong>
+          <p>No books found!</p>
+        </div>
+        <router-link to="/books-add">Click here</router-link> to add books.
+      </template>
     </div>
   </div>
 </template>

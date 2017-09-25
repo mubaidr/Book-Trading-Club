@@ -59,6 +59,17 @@
   right: 0;
   background-color: #18bc9c;
   color: #2c3e50;
-  font-size: 1.5em;
+  font-size: 1.25em;
   border-radius: 0 0 0 3px;
+  opacity: 0.9;
+  box-shadow: 0 1px 3px #444;
+}
+
+.book.trade-enable .trade-controls:hover {
+  opacity: 1;
+}
+
+.book.trade-enable .trade-controls.delete {
+  background-color: red;
+  color: #fff;
 }

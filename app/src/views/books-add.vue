@@ -41,7 +41,7 @@
   export default {
     data () {
       return {
-        book: 'mocking',
+        book: '',
         books: null,
         loading: false,
         success: false
