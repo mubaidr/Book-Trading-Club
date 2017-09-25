@@ -23,6 +23,9 @@
       <ul class="nav navbar-nav pull-right">
         <template v-if="isAuthenticated">
           <li>
+            <router-link to="/profile">Profile</router-link>
+          </li>
+          <li>
             <a href="#" @click.prevent.stop="logout">Logout</a>
           </li>
         </template>

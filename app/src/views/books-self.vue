@@ -12,7 +12,7 @@
           <span class="input-group-addon">Book Title:</span>
           <input type="text" class="form-control" placeholder="In Search of Lost Time, Hamlet, To Kill a Mockingbird" v-model="book">
           <span class="input-group-btn">
-            <button class="btn btn-primary" type="button" :disabled="book.length < 3">Add to collection</button>
+            <button class="btn btn-primary" type="button" :disabled="book.length < 3" @click="addBook">Add to collection</button>
           </span>
         </div>
       </div>
@@ -29,7 +29,7 @@
   export default {
     data () {
       return {
-        book: '',
+        book: 'Hamlet',
         books: null,
         loading: true
       }
@@ -37,7 +37,15 @@
     computed: {
       ...mapGetters(['getAPI'])
     },
-    created () { }, methods: {
+    created () { },
+    methods: {
+      addBook () {
+        axios.get('' + this.book).then(res => {
+          console.log(res)
+        }).catch(err => {
+          console.log(err)
+        })
+      },
       getBooks () {
         axios.get(this.getAPI.url + '/api/books/self').then(res => {
           this.books = res.data

@@ -2,10 +2,11 @@ import Vue from 'vue'
 import store from './../store'
 import Router from 'vue-router'
 
+import _404 from './../../views/404.vue'
 import home from './../../views/home.vue'
 import register from './../../views/register.vue'
+import profile from './../../views/profile.vue'
 import login from './../../views/login.vue'
-import _404 from './../../views/404.vue'
 import booksSelf from './../../views/books-self.vue'
 import books from './../../views/books.vue'
 import book from './../../views/book.vue'
@@ -20,6 +21,12 @@ const router = new Router({
   }, {
     path: '/home',
     component: home
+  }, {
+    path: '/profile',
+    component: profile,
+    meta: {
+      requiresAuth: true
+    }
   }, {
     path: '/register',
     component: register

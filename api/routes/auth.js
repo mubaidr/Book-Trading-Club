@@ -45,13 +45,15 @@ router.post('/auth/register', (req, res, next) => {
         }, function (err, token) {
           if (err) next(err)
 
-          delete usr.password
-
+          let userData = user.toJSON()
+          delete userData.password
+          delete userData._id
+          delete userData.__v
           res.json({
             success: true,
             error: null,
             token: token,
-            user: usr
+            user: user
           })
         })
       })
@@ -82,10 +84,10 @@ router.post('/auth/login', (req, res, next) => {
         error: 'Authentication failed'
       })
     } else {
-      bcrypt.compare(password, user.password, function (err, same) {
+      bcrypt.compare(password, user.password, function (err, isSame) {
         if (err) next(err)
 
-        if (same) {
+        if (isSame) {
           jwt.sign({
             data: user
           }, config.secret, {
@@ -93,13 +95,16 @@ router.post('/auth/login', (req, res, next) => {
           }, function (err, token) {
             if (err) next(err)
 
-            delete user.password
+            let userData = user.toJSON()
+            delete userData.password
+            delete userData._id
+            delete userData.__v
 
             res.json({
               success: true,
               error: null,
               token: token,
-              user: user
+              user: userData
             })
           })
         } else {
