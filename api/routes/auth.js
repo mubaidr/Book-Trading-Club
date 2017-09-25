@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const router = require('express').Router()
 
 const validate = require('../models/validators')
-const User = require('../models').User
+const User = require('../models').Users
 const config = require('../config')
 
 router.post('/auth/register', (req, res, next) => {
@@ -45,10 +45,13 @@ router.post('/auth/register', (req, res, next) => {
         }, function (err, token) {
           if (err) next(err)
 
+          delete usr.password
+
           res.json({
             success: true,
             error: null,
-            token: token
+            token: token,
+            user: usr
           })
         })
       })
@@ -90,10 +93,13 @@ router.post('/auth/login', (req, res, next) => {
           }, function (err, token) {
             if (err) next(err)
 
+            delete user.password
+
             res.json({
               success: true,
               error: null,
-              token: token
+              token: token,
+              user: user
             })
           })
         } else {
@@ -110,17 +116,20 @@ router.post('/auth/login', (req, res, next) => {
 router.use('/api/*', (req, res, next) => {
   let token = req.body.token || req.query.token || req.headers['x-access-token']
 
-  console.log(req)
-
-  if (token) {
-    jwt.verify(token, config.secret, (err, account) => {
-      if (err) next(err)
-
-      req.account = account
-      next()
-    })
+  if (req.originalUrl === '/api/books/') {
+    next()
   } else {
-    res.sendStatus(403)
+
+    if (token) {
+      jwt.verify(token, config.secret, (err, account) => {
+        if (err) next(err)
+
+        req.account = account
+        next()
+      })
+    } else {
+      res.sendStatus(403)
+    }
   }
 })
 

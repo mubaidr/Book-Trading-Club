@@ -49,19 +49,14 @@
     },
     methods: {
       login () {
-        axios.post(this.getAPI.url + 'auth/login', this.form).then(res => {
+        axios.post(this.getAPI.url + '/auth/login', this.form).then(res => {
           if (res.data.success) {
             store.commit('setAuthentication', res.data.token)
-            router.push('home')
+            store.commit('setUserInfo', res.data.user)
 
             setTimeout(() => {
-              axios.get(this.getAPI.url + 'api/users/self').then(result => {
-                store.commit('setUserInfo', result.data)
-              }).catch(err => {
-                alert(err)
-              })
-            }, 500)
-
+              router.push(this.$route.query.return || '/home')
+            }, 250)
           } else {
             alert(res.data.error)
           }

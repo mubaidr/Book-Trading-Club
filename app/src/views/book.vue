@@ -1,45 +1,42 @@
 <template>
   <div>
-    <h1>Books</h1>
-    <p>Available book collection.</p>
+    <h1>Book details</h1>
+    <p></p>
     <div class="progress progress-striped active" v-if="loading">
       <div class="progress-bar" style="width: 45%"></div>
     </div>
     <div v-else>
-      {{books}}
+      {{book}}
     </div>
   </div>
 </template>
 
 <script>
-  import router from './../utilities/router'
-  import { mapGetters } from 'vuex'
   import axios from 'axios'
+  import api from '../api'
 
   export default {
     data () {
       return {
-        books: null,
+        book: null,
         loading: true
       }
     },
-    computed: {
-      ...mapGetters(['getAPI'])
-    },
     created () { },
     methods: {
-      getBooks () {
-        axios.get(this.getAPI.url + '/api/books/').then(res => {
-          this.books = res.data
+      getBook () {
+        let id = this.$routes.params.id
+
+        axios.get(api.url + '/api/books/' + id).then(res => {
+          this.book = res.data
         }).catch(err => {
           console.log('unable to get books', err)
         }).then(() => {
           this.loading = false
         })
       }
-    },
-    mounted () {
-      this.getBooks()
+    }, mounted () {
+      this.getBook()
     }
   }
 </script>

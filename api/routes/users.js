@@ -1,11 +1,13 @@
 const router = require('express').Router()
 const Books = require('../models').Books
 
+/*
 router.get('/api/users/self', (req, res) => {
   let account = req.account
   delete account.data.password
   res.json(account)
 })
+*/
 
 router.get('/api/users/books', (req, res, next) => {
   let id = req.account.data._id

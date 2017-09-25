@@ -1,13 +1,15 @@
 const router = require('express').Router()
 const Books = require('../models').Books
 
-router.get('/api/books/:id', (req, res, next) => {
-  let id = req.params.id
+router.get('/api/books/self', (req, res, next) => {
+  let id = req.account.data._id
 
-  Books.findById(id).exec(function (err, book) {
+  Books.find({
+    owner_id: id
+  }).sort('date_added').exec(function (err, books) {
     if (err) next(err)
 
-    res.json(book)
+    res.json(books)
   })
 })
 
@@ -16,6 +18,16 @@ router.get('/api/books', (req, res, next) => {
     if (err) next(err)
 
     res.json(books)
+  })
+})
+
+router.get('/api/books/:id', (req, res, next) => {
+  let id = req.params.id
+
+  Books.findById(id).exec(function (err, book) {
+    if (err) next(err)
+
+    res.json(book)
   })
 })
 

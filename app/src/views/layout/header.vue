@@ -6,14 +6,14 @@
       </div>
       <ul class="nav navbar-nav">
         <li>
-          <router-link to="/all-books">View All Books</router-link>
+          <router-link to="/books">View All Books</router-link>
         </li>
         <template v-if="isAuthenticated">
           <li>
-            <router-link to="/my-books">My Collection</router-link>
+            <router-link to="/books-self">My Collection</router-link>
           </li>
           <li>
-            <router-link to="/all-requests">Borrow Requests</router-link>
+            <router-link to="/requests">Borrow Requests</router-link>
           </li>
           <li>
             <router-link to="/my-requests">My Requests Status</router-link>
