@@ -4,11 +4,13 @@ const router = require('express').Router()
 const authRoutes = require('./auth')
 const userRoutes = require('./users')
 const bookRoutes = require('./books')
+const tradeRoutes = require('./trade-requests')
 
 /* Register model routes */
 router.use(authRoutes)
 router.use(userRoutes)
 router.use(bookRoutes)
+router.use(tradeRoutes)
 
 /* 404 */
 router.get('*', (req, res) => {

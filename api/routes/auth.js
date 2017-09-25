@@ -110,6 +110,8 @@ router.post('/auth/login', (req, res, next) => {
 router.use('/api/*', (req, res, next) => {
   let token = req.body.token || req.query.token || req.headers['x-access-token']
 
+  console.log(req)
+
   if (token) {
     jwt.verify(token, config.secret, (err, account) => {
       if (err) next(err)

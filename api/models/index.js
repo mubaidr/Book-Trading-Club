@@ -17,14 +17,8 @@ let userSchema = new mongoose.Schema({
     min: 8,
     required: true
   },
-  state: {
-    type: String,
-    required: true
-  },
-  city: {
-    type: String,
-    required: true
-  }
+  state: String,
+  city: String
 })
 
 let bookSchema = new mongoose.Schema({
@@ -36,49 +30,47 @@ let bookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  owner: {
+  owner_id: {
     type: String,
     required: true
   },
-  borrower: {
+  cover: {
     type: String,
     required: true
   },
-  isAvailable: {
-    type: Boolean,
-    required: true
-  }
+  date_added: Date
 })
 
-let borrowRequestSchema = new mongoose.Schema({
-  book: {
+let tradeSchema = new mongoose.Schema({
+  book_id: {
     type: String,
     required: true
   },
-  owner: {
+  owner_id: {
     type: String,
     required: true
   },
-  borrower: {
+  trader_id: {
     type: String,
     required: true
   },
   isCompleted: {
     type: Boolean,
     required: true
-  }
+  },
+  date_added: Date
 })
 
 let userModel = mongoose.model('User', userSchema)
 let bookModel = mongoose.model('Book', bookSchema)
-let borrowRequestModel = mongoose.model('borrowRequest', borrowRequestSchema)
+let tradeModel = mongoose.model('Trade', tradeSchema)
 
 // voteSchema.pre('save', next => {
 //   next()
 // })
 
 module.exports = {
-  User: userModel,
-  Book: bookModel,
-  BorrowRequest: borrowRequestModel
+  Users: userModel,
+  Books: bookModel,
+  Trades: tradeModel
 }
