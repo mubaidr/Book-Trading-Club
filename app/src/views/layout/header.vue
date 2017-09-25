@@ -13,7 +13,7 @@
             <router-link to="/books-self">My Collection</router-link>
           </li>
           <li>
-            <router-link to="/requests">Trade Requests</router-link>
+            <router-link to="/trades">Trade Requests</router-link>
           </li>
         </template>
       </ul>

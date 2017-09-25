@@ -46,9 +46,12 @@
     },
     created () { },
     methods: {
-      removeBook () {
-        axios.delete(this.getAPI.url + '/api/books/self').then(res => {
-          this.books = res.data
+      removeBook (book) {
+        this.loading = true
+        axios.delete(this.getAPI.url + '/api/books/' + book._id).then(() => {
+          this.books = this.books.filter((item) => {
+            return item._id !== book._id
+          })
         }).catch(err => {
           console.log(err)
         }).then(() => {

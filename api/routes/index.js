@@ -1,10 +1,9 @@
-const chalk = require('chalk')
 const router = require('express').Router()
 
 const authRoutes = require('./auth')
 const userRoutes = require('./users')
 const bookRoutes = require('./books')
-const tradeRoutes = require('./trade-requests')
+const tradeRoutes = require('./trade')
 
 /* Register model routes */
 router.use(authRoutes)
@@ -14,13 +13,13 @@ router.use(tradeRoutes)
 
 /* 404 */
 router.get('*', (req, res) => {
-  console.dir(chalk.bgRed('404! Not Found!'))
+  console.dir('404! Not Found!')
   res.status(404).end()
 })
 
 /* Error handler */
-router.use(function (err, req, res, next) {
-  console.dir(chalk.bgRed(err))
+router.use(function (err, req, res) {
+  console.dir(err)
   res.status(500).send(err)
 })
 

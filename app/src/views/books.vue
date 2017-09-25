@@ -42,12 +42,23 @@
       }
     },
     computed: {
-      ...mapGetters(['getAPI'])
+      ...mapGetters(['getAPI', 'isAuthenticated'])
     },
     created () { },
     methods: {
       tradeBook (book) {
-        console.log(book)
+        if (this.isAuthenticated) {
+          axios.post(this.getAPI.url + '/api/trades/', {
+            book_id: book._id,
+            owner_id: book.owner_id
+          }).then(() => {
+            router.push('/trades')
+          }).catch(err => {
+            console.log(err)
+          })
+        } else {
+          router.push('/login/?return=' + this.$route.fullPath)
+        }
       },
       getBooks () {
         axios.get(this.getAPI.url + '/api/books/').then(res => {

@@ -121,20 +121,18 @@ router.post('/auth/login', (req, res, next) => {
 router.use('/api/*', (req, res, next) => {
   let token = req.body.token || req.query.token || req.headers['x-access-token']
 
-  if (req.originalUrl === '/api/books/') {
-    next()
+  if (token) {
+    jwt.verify(token, config.secret, (err, account) => {
+      if (err) next(err)
+
+      req.account = account
+      next()
+    })
   } else {
-
-    if (token) {
-      jwt.verify(token, config.secret, (err, account) => {
-        if (err) next(err)
-
-        req.account = account
-        next()
-      })
-    } else {
-      res.sendStatus(403)
+    if (req.originalUrl === '/api/books/') {
+      next()
     }
+    res.sendStatus(403)
   }
 })
 

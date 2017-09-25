@@ -13,7 +13,6 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.1",
-    "chalk": "^2.1.0",
     "cors": "^2.8.4",
     "express": "~4.15.2",
     "jsonwebtoken": "^8.0.1",
