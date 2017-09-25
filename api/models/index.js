@@ -35,7 +35,7 @@ let bookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  cover: {
+  thumbnail: {
     type: String,
     required: true
   },

@@ -8,13 +8,14 @@ import register from './../../views/register.vue'
 import profile from './../../views/profile.vue'
 import login from './../../views/login.vue'
 import booksSelf from './../../views/books-self.vue'
+import booksAdd from './../../views/books-add.vue'
 import books from './../../views/books.vue'
 import book from './../../views/book.vue'
 
 Vue.use(Router)
 
 const router = new Router({
-  base: '/Open-Book-Store/',
+  base: '/',
   routes: [{
     path: '/',
     redirect: '/home'
@@ -36,6 +37,12 @@ const router = new Router({
   }, {
     path: '/books-self',
     component: booksSelf,
+    meta: {
+      requiresAuth: true
+    }
+  }, {
+    path: '/books-add',
+    component: booksAdd,
     meta: {
       requiresAuth: true
     }
