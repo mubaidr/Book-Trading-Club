@@ -10,13 +10,12 @@
     <div v-else>
       <template v-if="books && books.length > 0">
         <div class="row">
-          <div class="col-md-2" v-for="book in books" :key="book._id">
-            <div class="book trade-enable">
-              <div class="trade-controls delete" @click="removeBook(book)">
-                <i class="fa fa-remove" aria-hidden="true"></i>
+          <div class="col-md-2 col-sm-3 col-xs-6" v-for="book in books" :key="book._id">
+            <div class="book">
+              <div class="controls">
+                <i class="fa fa-trash text-danger" aria-hidden="true" @click="removeBook(book)" title="Remove"></i>
               </div>
               <img alt="thumbnail" :title="book.title" :src="book.thumbnail" />
-              <!-- <p class="text-success">{{book.volumeInfo.title}}</p><span class="text-muted">{{getAuthors(book.volumeInfo.authors)}}</span> -->
             </div>
           </div>
         </div>
@@ -63,7 +62,7 @@
         })
       },
       getBooks () {
-        axios.get(this.getAPI.url + '/api/books/self').then(res => {
+        axios.get(this.getAPI.url + '/api/books/self/').then(res => {
           this.books = res.data
         }).catch(err => {
           console.log(err)

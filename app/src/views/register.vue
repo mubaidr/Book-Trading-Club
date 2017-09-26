@@ -58,8 +58,10 @@
       register () {
         axios.post(this.getAPI.url + '/auth/register', this.form).then(res => {
           if (res.data.success) {
-            store.commit('setAuthentication', res.data.token)
-            store.commit('setUserInfo', res.data.user)
+            store.commit('setAuthAndUser', {
+              token: res.data.token,
+              user: res.data.user
+            })
 
             setTimeout(() => {
               router.push(this.$route.query.return || '/home')

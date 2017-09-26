@@ -5,19 +5,19 @@
         <fieldset>
           <legend>Login</legend>
           <div class="form-group">
-            <label for="inputEmail" class="col-lg-4 control-label">Username</label>
-            <div class="col-lg-8">
+            <label for="inputEmail" class="col-lg-3 control-label">Username</label>
+            <div class="col-lg-9">
               <input type="text" class="form-control" placeholder="username" v-model="form.username">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword" class="col-lg-4 control-label">Password</label>
-            <div class="col-lg-8">
+            <label for="inputPassword" class="col-lg-3 control-label">Password</label>
+            <div class="col-lg-9">
               <input type="password" class="form-control" placeholder="Password" v-model="form.password">
             </div>
           </div>
           <div class="form-group">
-            <div class="col-lg-8 col-lg-offset-4">
+            <div class="col-lg-3 col-lg-offset-3">
               <button type="button" class="btn btn-primary" @click.prevent.stop="login">Login</button>
               <router-link to="/register">Don't have an account?</router-link>
               <router-link to="/home">Cancel</router-link>
@@ -51,8 +51,10 @@
       login () {
         axios.post(this.getAPI.url + '/auth/login', this.form).then(res => {
           if (res.data.success) {
-            store.commit('setAuthentication', res.data.token)
-            store.commit('setUserInfo', res.data.user)
+            store.commit('setAuthAndUser', {
+              token: res.data.token,
+              user: res.data.user
+            })
 
             setTimeout(() => {
               router.push(this.$route.query.return || '/home')

@@ -23,13 +23,12 @@
         <p v-if="books && books.length>0">Please choose a book from below results:</p>
         <p v-else>You can search a book either by title or author name.</p>
       </div>
-      <div class="col-md-2" v-for="book in books" :key="book.id" v-if="book.volumeInfo.imageLinks">
-        <div class="book add" @click="addBook(book)">
-          <div class="cover">
-            <i class="fa fa-plus" aria-hidden="true"></i>
+      <div class="col-md-2 col-sm-3 col-xs-6" v-for="book in books" :key="book.id" v-if="book.volumeInfo.imageLinks">
+        <div class="book">
+          <div class="controls">
+            <i class="fa fa-plus text-success" aria-hidden="true" @click="addBook(book)" title="Add"></i>
           </div>
           <img alt="thumbnail" :title="book.volumeInfo.title" :src="book.volumeInfo.imageLinks.thumbnail" />
-          <!-- <p class="text-success">{{book.volumeInfo.title}}</p><span class="text-muted">{{getAuthors(book.volumeInfo.authors)}}</span> -->
         </div>
       </div>
     </div>

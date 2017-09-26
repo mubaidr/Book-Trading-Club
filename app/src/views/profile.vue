@@ -74,7 +74,7 @@
     },
     methods: {
       getProfile () {
-        axios.get(api.url + '/api/users/self').then(res => {
+        axios.get(api.url + '/api/users/self/').then(res => {
           this.user = res.data
         }).catch(err => {
           console.log(err)
@@ -85,7 +85,7 @@
       updateProfile () {
         this.loading = true
 
-        axios.post(api.url + '/api/users/', this.user).then(() => {
+        axios.put(api.url + '/api/users/', this.user).then(() => {
           router.push('/home')
         }).catch(err => {
           console.log(err)

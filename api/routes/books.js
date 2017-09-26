@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const Books = require('./../models').Books
 
-router.get('/api/books/self', (req, res, next) => {
+router.get('/api/books/self/', (req, res, next) => {
   let id = req.account.data._id
 
   Books.find({
@@ -13,7 +13,7 @@ router.get('/api/books/self', (req, res, next) => {
   })
 })
 
-router.get('/api/books', (req, res, next) => {
+router.get('/api/books/', (req, res, next) => {
   let id = req.account ? req.account.data._id : null
 
   Books.find({
@@ -27,7 +27,7 @@ router.get('/api/books', (req, res, next) => {
   })
 })
 
-router.get('/api/books/:id', (req, res, next) => {
+router.get('/api/books/:id/', (req, res, next) => {
   let id = req.params.id
 
   Books.findById(id).exec(function (err, book) {
@@ -37,7 +37,7 @@ router.get('/api/books/:id', (req, res, next) => {
   })
 })
 
-router.post('/api/books', (req, res, next) => {
+router.post('/api/books/', (req, res, next) => {
   let book = new Books(req.body)
   book.owner = req.account.data._id
   book.date_added = new Date()
@@ -49,7 +49,7 @@ router.post('/api/books', (req, res, next) => {
   })
 })
 
-router.delete('/api/books/:id', (req, res, next) => {
+router.delete('/api/books/:id/', (req, res, next) => {
   let id = req.params.id
   let ownerId = req.account.data._id
 

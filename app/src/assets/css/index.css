@@ -15,76 +15,49 @@
   min-height: calc(100vh - 252px);
 }
 
+
 /*Book*/
 
 .book {
-  /* padding: 5px; */
-  background-color: #2c3e50;
-  transition: box-shadow 0.25s ease-out;
   text-align: center;
   border-radius: 3px;
-  height: 240px;
+  height: 280px;
   margin-bottom: 25px;
   display: block;
   overflow: hidden;
-  box-shadow: 0 0 5px #2c3e50;
-}
-
-.book.add {
-  cursor: pointer;
-}
-
-.book.add .cover {
-  position: absolute;
-  width: 50%;
-  height: 38%;
-  top: 25%;
-  left: 25%;
-  opacity: 0;
-  border-radius: 50%;
-  transition: opacity 0.25s ease-out;
-  font-size: 5em;
-  color: #18bc9c;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-.book.add:hover .cover {
-  opacity: 1;
+  transition: border 0.25s ease-out;
+  border: 1px solid #ecf0f1;
 }
 
 .book img {
   width: 100%;
-  border-radius: 3px;
 }
 
-.book.trade-enable {
-  position: relative;
+.book:hover {
+  border: 1px solid #ccc;
 }
 
-.book.trade-enable img {
-  border-radius: 0;
-}
-
-.book.trade-enable .trade-controls {
-  cursor: pointer;
-  width: 25%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #18bc9c;
-  color: #2c3e50;
+.book .controls {
+  width: 100%;
   font-size: 1.5em;
-  border-radius: 0 0 0 3px;
-  opacity: 0.9;
-  box-shadow: 0 1px 3px #444;
+  text-align: right;
 }
 
-.book.trade-enable .trade-controls:hover {
-  opacity: 1;
+.book .controls i.fa {
+  cursor: pointer;
 }
 
-.book.trade-enable .trade-controls.delete {
-  background-color: red;
-  color: #fff;
+.book .controls i {
+  display: inline-block;
+  padding: 10px;
+  margin: 0;
+}
+
+.book .controls i:hover {
+  cursor: pointer;
+}
+
+.book .controls i.small {
+  font-size: 0.5em;
+  text-align: center;
 }

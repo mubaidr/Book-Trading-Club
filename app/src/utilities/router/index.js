@@ -10,7 +10,6 @@ import login from './../../views/login.vue'
 import booksSelf from './../../views/books-self.vue'
 import booksAdd from './../../views/books-add.vue'
 import books from './../../views/books.vue'
-import book from './../../views/book.vue'
 import trades from './../../views/trades.vue'
 
 Vue.use(Router)
@@ -47,9 +46,6 @@ const router = new Router({
     meta: {
       requiresAuth: true
     }
-  }, {
-    path: '/books/:id',
-    component: book
   }, {
     path: '/books',
     component: books

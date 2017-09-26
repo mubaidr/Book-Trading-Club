@@ -6,7 +6,7 @@ const validate = require('../models/validators')
 const User = require('../models').Users
 const config = require('../config')
 
-router.post('/auth/register', (req, res, next) => {
+router.post('/auth/register/', (req, res, next) => {
   let username = req.body.username.toLowerCase()
   let password = req.body.password
   let passwordHash = bcrypt.hashSync(password, 8)
@@ -49,7 +49,10 @@ router.post('/auth/register', (req, res, next) => {
             success: true,
             error: null,
             token: token,
-            user: usr
+            user: {
+              username: usr.username,
+              _id: usr._id
+            }
           })
         })
       })
@@ -57,7 +60,7 @@ router.post('/auth/register', (req, res, next) => {
   })
 })
 
-router.post('/auth/login', (req, res, next) => {
+router.post('/auth/login/', (req, res, next) => {
   let username = req.body.username.toLowerCase()
   let password = req.body.password
 
@@ -83,6 +86,7 @@ router.post('/auth/login', (req, res, next) => {
       bcrypt.compare(password, user.password, function (err, isSame) {
         if (err) next(err)
 
+        delete user.password
         if (isSame) {
           jwt.sign({
             data: user
@@ -95,7 +99,10 @@ router.post('/auth/login', (req, res, next) => {
               success: true,
               error: null,
               token: token,
-              user: user
+              user: {
+                username: user.username,
+                _id: user._id
+              }
             })
           })
         } else {

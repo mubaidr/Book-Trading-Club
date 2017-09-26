@@ -9,19 +9,18 @@
     <div v-else>
       <template v-if="books && books.length > 0">
         <div class="row">
-          <div class="col-md-2" v-for="book in books" :key="book._id">
-            <div class="book trade-enable">
-              <div class="trade-controls" @click="tradeBook(book)">
-                <i class="fa fa-exchange" aria-hidden="true"></i>
+          <div class="col-md-2 col-sm-3 col-xs-6" v-for="book in books" :key="book._id">
+            <div class="book">
+              <div class="controls">
+                <i class="fa fa-exchange text-info" aria-hidden="true" @click="tradeBook(book)" title="Request"></i>
               </div>
               <img alt="thumbnail" :title="book.title" :src="book.thumbnail" />
-              <!-- <p class="text-success">{{book.volumeInfo.title}}</p><span class="text-muted">{{getAuthors(book.volumeInfo.authors)}}</span> -->
             </div>
           </div>
         </div>
       </template>
       <template v-else>
-        <div class="alert alert-dismissible alert-info">
+        <div class="alert alert-info">
           <h3>Oops!</h3>
           <p>No books found!</p>
         </div>

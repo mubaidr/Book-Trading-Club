@@ -16,14 +16,24 @@ const mutations = {
     state.token = token
     session.setToken(token)
   },
-  setUserInfo(state, userInfo) {
-    state.userInfo = userInfo
-    session.setUser(userInfo)
+  setUserInfo(state, user) {
+    state.user = user
+    session.setUser(user)
   },
   removeAuthentication(state) {
     state.token = null
     state.user = null
     session.clear()
+  },
+  setAuthAndUser(state, obj) {
+    let token = obj.token
+    let user = obj.user
+
+    session.setToken(token)
+    session.setUser(user)
+
+    state.token = token
+    state.user = user
   }
 }
 

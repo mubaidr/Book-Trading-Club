@@ -8,8 +8,7 @@ let userSchema = new mongoose.Schema({
     type: String,
     min: 6,
     max: 12,
-    required: true,
-    select: false
+    required: true
   },
   password: {
     type: String,
@@ -47,6 +46,10 @@ let bookSchema = new mongoose.Schema({
 let tradeSchema = new mongoose.Schema({
   date_added: Date,
   isCompleted: {
+    type: Boolean,
+    required: true
+  },
+  isApproved: {
     type: Boolean,
     required: true
   },
