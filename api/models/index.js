@@ -8,12 +8,14 @@ let userSchema = new mongoose.Schema({
     type: String,
     min: 6,
     max: 12,
-    required: true
+    required: true,
+    select: false
   },
   password: {
     type: String,
     min: 8,
-    required: true
+    required: true,
+    select: false
   },
   first_name: String,
   last_name: String,

@@ -45,15 +45,11 @@ router.post('/auth/register', (req, res, next) => {
         }, function (err, token) {
           if (err) next(err)
 
-          let userData = user.toJSON()
-          delete userData.password
-          delete userData._id
-          delete userData.__v
           res.json({
             success: true,
             error: null,
             token: token,
-            user: user
+            user: usr
           })
         })
       })
@@ -75,7 +71,7 @@ router.post('/auth/login', (req, res, next) => {
 
   User.findOne({
     username: username
-  }, (err, user) => {
+  }).select('+password').exec((err, user) => {
     if (err) next(err)
 
     if (!user) {
@@ -95,16 +91,11 @@ router.post('/auth/login', (req, res, next) => {
           }, function (err, token) {
             if (err) next(err)
 
-            let userData = user.toJSON()
-            delete userData.password
-            delete userData._id
-            delete userData.__v
-
             res.json({
               success: true,
               error: null,
               token: token,
-              user: userData
+              user: user
             })
           })
         } else {
@@ -131,8 +122,9 @@ router.use('/api/*', (req, res, next) => {
   } else {
     if (req.originalUrl === '/api/books/') {
       next()
+    } else {
+      res.sendStatus(403)
     }
-    res.sendStatus(403)
   }
 })
 
