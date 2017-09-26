@@ -4,9 +4,9 @@
     <p>Trade or loan books with other book readers in your area.</p>
     <br/>
     <p>
-      Get started now:
-      <router-link to="/books">Find some books</router-link> or
-      <router-link to="/books-add">Create your collection</router-link>
+      Get started now by
+      <router-link to="/books-add">Creating your own collection</router-link> or
+      <router-link to="/books">Finding books for you</router-link>
     </p>
   </div>
 </template>

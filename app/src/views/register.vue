@@ -25,8 +25,8 @@
           <div class="form-group">
             <div class="col-lg-9 col-lg-offset-3">
               <button type="button" class="btn btn-primary" @click.prevent.stop="register">Register</button>
-              <router-link to="/login">Already have an account?</router-link>
-              <router-link to="/home">Cancel</router-link>
+              <router-link to="/login" class="btn btn-link">Already have an account?</router-link>
+              <router-link to="/home" class="btn btn-link">Cancel</router-link>
             </div>
           </div>
         </fieldset>

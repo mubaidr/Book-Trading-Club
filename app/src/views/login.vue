@@ -17,10 +17,10 @@
             </div>
           </div>
           <div class="form-group">
-            <div class="col-lg-3 col-lg-offset-3">
+            <div class="col-lg-9 col-lg-offset-3">
               <button type="button" class="btn btn-primary" @click.prevent.stop="login">Login</button>
-              <router-link to="/register">Don't have an account?</router-link>
-              <router-link to="/home">Cancel</router-link>
+              <router-link to="/register" class="btn btn-link">Don't have an account?</router-link>
+              <router-link to="/home" class="btn btn-link">Cancel</router-link>
             </div>
           </div>
         </fieldset>
