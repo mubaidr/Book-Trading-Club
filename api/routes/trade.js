@@ -1,14 +1,14 @@
 const router = require('express').Router()
-const Trades = require('../models').Trades
+const Trades = require('./../models').Trades
 
 router.get('/api/trades', (req, res, next) => {
   let id = req.account.data._id
 
   Trades.find({
     $or: [{
-      'owner.$id': id
+      owner: id
     }, {
-      'trader.$id': id
+      trader: id
     }]
   }).sort('date_added').exec(function (err, trades) {
     if (err) next(err)

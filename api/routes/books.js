@@ -1,11 +1,11 @@
 const router = require('express').Router()
-const Books = require('../models').Books
+const Books = require('./../models').Books
 
 router.get('/api/books/self', (req, res, next) => {
   let id = req.account.data._id
 
   Books.find({
-    'owner.$id': id
+    owner: id
   }).populate('owner').sort('date_added').exec(function (err, books) {
     if (err) next(err)
 
@@ -17,7 +17,7 @@ router.get('/api/books', (req, res, next) => {
   let id = req.account ? req.account.data._id : null
 
   Books.find({
-    'owner.$id': {
+    owner: {
       $ne: id
     }
   }).populate('owner').sort('date_added').exec(function (err, books) {
@@ -55,7 +55,7 @@ router.delete('/api/books/:id', (req, res, next) => {
 
   Books.findOneAndRemove({
     _id: id,
-    'owner.$id': ownerId
+    owner: ownerId
   }).exec(function (err, book) {
     if (err) next(err)
 

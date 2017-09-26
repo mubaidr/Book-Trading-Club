@@ -65,8 +65,6 @@
       getBooks () {
         axios.get(this.getAPI.url + '/api/books/').then(res => {
           this.books = res.data
-
-          console.log(this.books)
         }).catch(err => {
           console.log(err)
         }).then(() => {
