@@ -5,7 +5,7 @@
     <router-link class="btn btn-primary" to="/books-add">Add Books to your collection</router-link>
     <hr/>
     <div class="progress progress-striped active" v-if="loading">
-      <div class="progress-bar" style="width: 45%"></div>
+      <div class="progress-bar" style="width: 100%"></div>
     </div>
     <div v-else>
       <template v-if="books && books.length > 0">

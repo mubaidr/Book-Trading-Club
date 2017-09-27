@@ -41,7 +41,7 @@
             <button type="submit" class="btn btn-primary" @click="updateProfile" :disabled="loading">Update</button>
             <br/> <br/>
             <div class="progress progress-striped active" v-if="loading">
-              <div class="progress-bar" style="width: 45%"></div>
+              <div class="progress-bar" style="width: 100%"></div>
             </div>
           </div>
         </div>
