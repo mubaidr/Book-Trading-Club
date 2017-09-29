@@ -20,23 +20,19 @@ router.get('/api/trades/', (req, res, next) => {
 router.put('/api/trades/', (req, res, next) => {
   if (!req.account.data.contact_number) {
     res.json({
-      redirect: '/profile/?msg="You need to update profile to be able to trade books."'
+      redirect: '/profile/?msg=You need to update profile to be able to trade books'
     })
   } else {
-    let trade = req.body
+    let trade = new Trades(req.body)
+    trade.isNew = false
 
     if (trade.owner._id === req.account.data._id) {
-      Trades.findByIdAndUpdate(trade._id, {
-        $set: {
-          isCompleted: true,
-          isApproved: trade.isApproved
-        }
-      }, {
-        upsert: true
-      }, (err, t) => {
+      trade.isCompleted = true
+
+      trade.save((err, t) => {
         if (err) next(err)
 
-        res.json(t || true)
+        res.json(t)
       })
     } else {
       res.status(403)
@@ -47,7 +43,7 @@ router.put('/api/trades/', (req, res, next) => {
 router.post('/api/trades/', (req, res, next) => {
   if (!req.account.data.contact_number) {
     res.json({
-      redirect: '/profile/?msg="You need to update profile to be able to trade books."'
+      redirect: '/profile/?msg=You need to update profile to be able to trade books'
     })
   } else {
     let trade = new Trades(req.body)

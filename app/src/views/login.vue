@@ -60,7 +60,7 @@
               if (res.data.user.contact_number) {
                 router.push(this.$route.query.return || '/home')
               } else {
-                router.push(this.$route.query.return || '/profile/?msg="Please update your profile details"')
+                router.push(this.$route.query.return || '/profile/?msg=Please update your profile details')
               }
             }, 250)
           } else {

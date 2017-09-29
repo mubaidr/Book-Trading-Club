@@ -58,6 +58,11 @@
               </div>
               <img alt="thumbnail" :title="trade.book.title" :src="trade.book.thumbnail" />
             </div>
+            <p>
+              <span>Contact Number: {{getOtherUser(trade).contact_number}}</span><br/>
+              <span>Name: {{getOtherUser(trade).first_name + ' ' + getOtherUser(trade).last_name}}</span><br/>
+              <span>Adress: {{getOtherUser(trade).city + ', ' + getOtherUser(trade).state}}</span><br/>
+            </p>
           </div>
         </div>
       </template>
@@ -100,6 +105,17 @@
       }
     },
     methods: {
+      getOtherUser (trade) {
+        let id = this.getUser._id
+
+        if (trade.isApproved) {
+          if (trade.owner._id === id) {
+            return trade.trader
+          } else {
+            return trade.owner
+          }
+        }
+      },
       getTradeTitle (trade) {
         let id = this.getUser._id
         if (trade.isApproved) {
