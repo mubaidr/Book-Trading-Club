@@ -64,7 +64,7 @@
             })
 
             setTimeout(() => {
-              router.push(this.$route.query.return || '/home')
+              router.push(this.$route.query.return || '/profile')
             }, 250)
           } else {
             alert(res.data.error)

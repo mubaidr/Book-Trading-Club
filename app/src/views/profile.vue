@@ -3,6 +3,10 @@
     <h1>Profile</h1>
     <p>Update your profile.</p>
     <hr/>
+    <div class="alert alert-info" v-show="message">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Heads up!</strong> {{message}}
+    </div>
     <form class="form-horizontal">
       <fieldset>
         <div class="form-group">
@@ -66,7 +70,8 @@
           contact_number: '',
           state: '',
           city: ''
-        }
+        },
+        message: ''
       }
     },
     computed: {
@@ -91,7 +96,11 @@
           console.log(err)
         })
       }
-    }, mounted () {
+    },
+    created () {
+      this.message = this.$route.query.msg
+    },
+    mounted () {
       this.getProfile()
     }
   }

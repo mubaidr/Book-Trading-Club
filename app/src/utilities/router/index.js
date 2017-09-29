@@ -51,7 +51,10 @@ const router = new Router({
     component: books
   }, {
     path: '/trades',
-    component: trades
+    component: trades,
+    meta: {
+      requiresAuth: true
+    }
   }, {
     path: '/404',
     component: _404

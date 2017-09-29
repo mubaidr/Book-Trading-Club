@@ -18,38 +18,50 @@ router.get('/api/trades/', (req, res, next) => {
 })
 
 router.put('/api/trades/', (req, res, next) => {
-  let trade = req.body
-
-  if (trade.owner._id === req.account.data._id) {
-    Trades.findByIdAndUpdate(trade._id, {
-      $set: {
-        isCompleted: true,
-        isApproved: trade.isApproved
-      }
-    }, {
-      upsert: true
-    }, (err, t) => {
-      if (err) next(err)
-
-      res.json(t || true)
+  if (!req.account.data.contact_number) {
+    res.json({
+      redirect: '/profile/?msg="You need to update profile to be able to trade books."'
     })
   } else {
-    res.status(403)
+    let trade = req.body
+
+    if (trade.owner._id === req.account.data._id) {
+      Trades.findByIdAndUpdate(trade._id, {
+        $set: {
+          isCompleted: true,
+          isApproved: trade.isApproved
+        }
+      }, {
+        upsert: true
+      }, (err, t) => {
+        if (err) next(err)
+
+        res.json(t || true)
+      })
+    } else {
+      res.status(403)
+    }
   }
 })
 
 router.post('/api/trades/', (req, res, next) => {
-  let trade = new Trades(req.body)
-  trade.trader = req.account.data._id
-  trade.isCompleted = false
-  trade.isApproved = false
-  trade.date_added = new Date()
+  if (!req.account.data.contact_number) {
+    res.json({
+      redirect: '/profile/?msg="You need to update profile to be able to trade books."'
+    })
+  } else {
+    let trade = new Trades(req.body)
+    trade.trader = req.account.data._id
+    trade.isCompleted = false
+    trade.isApproved = false
+    trade.date_added = new Date()
 
-  trade.save((err, t) => {
-    if (err) next(err)
+    trade.save((err, t) => {
+      if (err) next(err)
 
-    res.json(t)
-  })
+      res.json(t)
+    })
+  }
 })
 
 router.delete('/api/trades/:id/', (req, res, next) => {
