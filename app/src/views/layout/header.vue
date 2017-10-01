@@ -53,7 +53,7 @@
     methods: {
       logout () {
         store.commit('removeAuthentication')
-        router.push('home')
+        router.push('/home')
       }
     }
   }
