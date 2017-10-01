@@ -48,7 +48,7 @@
       </template>
       <hr/>
       <h2>Completed Trades: </h2>
-      <p>All completed trades will hsow here.</p>
+      <p>All completed trades will show here.</p>
       <template v-if="completedRequests.length > 0">
         <div class="row">
           <div class="col-md-2 col-sm-3 col-xs-6" v-for="trade in completedRequests" :key="trade._id">
