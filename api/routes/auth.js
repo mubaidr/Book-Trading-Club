@@ -49,10 +49,7 @@ router.post('/auth/register/', (req, res, next) => {
             success: true,
             error: null,
             token: token,
-            user: {
-              username: usr.username,
-              _id: usr._id
-            }
+            user: usr
           })
         })
       })
@@ -99,10 +96,7 @@ router.post('/auth/login/', (req, res, next) => {
               success: true,
               error: null,
               token: token,
-              user: {
-                username: user.username,
-                _id: user._id
-              }
+              user: user
             })
           })
         } else {

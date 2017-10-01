@@ -18,14 +18,14 @@ router.get('/api/trades/', (req, res, next) => {
 })
 
 router.put('/api/trades/', (req, res, next) => {
+  let trade = new Trades(req.body)
+  trade.isNew = false
+
   if (!req.account.data.contact_number) {
     res.json({
       redirect: '/profile/?msg=You need to update profile to be able to trade books'
     })
   } else {
-    let trade = new Trades(req.body)
-    trade.isNew = false
-
     if (trade.owner._id === req.account.data._id) {
       trade.isCompleted = true
 

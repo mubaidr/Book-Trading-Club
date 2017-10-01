@@ -76,6 +76,7 @@
 </template>
 
 <script>
+  import router from '../utilities/router'
   import { mapGetters } from 'vuex'
   import axios from 'axios'
 
@@ -148,12 +149,16 @@
         trade.isApproved = approved
         trade.isCompleted = true
 
-        axios.put(this.getAPI.url + '/api/trades/', trade).then(() => {
-          this.trades = this.trades.filter((item) => {
-            return item._id !== trade._id
-          })
+        axios.put(this.getAPI.url + '/api/trades/', trade).then((res) => {
+          if (res.data.redirect) {
+            router.push(res.data.redirect)
+          } else {
+            this.trades = this.trades.filter((item) => {
+              return item._id !== trade._id
+            })
 
-          this.trades.push(trade)
+            this.trades.push(trade)
+          }
         }).catch(err => {
           console.log(err)
         })

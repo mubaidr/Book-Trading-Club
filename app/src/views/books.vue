@@ -52,8 +52,12 @@
           axios.post(this.getAPI.url + '/api/trades/', {
             book: book._id,
             owner: book.owner
-          }).then(() => {
-            router.push('/trades')
+          }).then((res) => {
+            if (res.data.redirect) {
+              router.push(res.data.redirect)
+            } else {
+              router.push('/trades')
+            }
           }).catch(err => {
             console.log(err)
           })
