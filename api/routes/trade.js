@@ -18,24 +18,27 @@ router.get('/api/trades/', (req, res, next) => {
 })
 
 router.put('/api/trades/', (req, res, next) => {
-  let trade = new Trades(req.body)
-  trade.isNew = false
+  let trade = new Trades(req.body.trade)
+  let isApproved = req.body.isApproved
 
-  if (!req.account.data.contact_number) {
+  trade.isApproved = isApproved
+
+  if (trade.isApproved && !req.account.data.contact_number) {
     res.json({
       redirect: '/profile/?msg=You need to update profile to be able to trade books'
     })
   } else {
-    if (trade.owner._id === req.account.data._id) {
+    if (trade.owner.toString() === req.account.data._id) {
+      trade.isNew = false
       trade.isCompleted = true
 
-      trade.save((err, t) => {
+      trade.save(err => {
         if (err) next(err)
 
-        res.json(t)
+        res.json(trade)
       })
     } else {
-      res.status(403)
+      res.status(403).end()
     }
   }
 })
@@ -52,10 +55,10 @@ router.post('/api/trades/', (req, res, next) => {
     trade.isApproved = false
     trade.date_added = new Date()
 
-    trade.save((err, t) => {
+    trade.save(err => {
       if (err) next(err)
 
-      res.json(t)
+      res.json(trade)
     })
   }
 })

@@ -58,10 +58,21 @@
               </div>
               <img alt="thumbnail" :title="trade.book.title" :src="trade.book.thumbnail" />
             </div>
-            <p>
-              <span>Contact Number: {{getOtherUser(trade).contact_number}}</span><br/>
-              <span>Name: {{getOtherUser(trade).first_name + ' ' + getOtherUser(trade).last_name}}</span><br/>
-              <span>Adress: {{getOtherUser(trade).city + ', ' + getOtherUser(trade).state}}</span><br/>
+            <p v-if="trade.owner._id == getUser._id">
+              <span>
+                <strong>Contact Number: </strong>{{trade.trader.contact_number}}</span><br/>
+              <span>
+                <strong>Name: </strong>{{trade.trader.first_name + ' ' + trade.trader.last_name}}</span><br/>
+              <span>
+                <strong>Adress: </strong>{{trade.trader.city + ', ' + trade.trader.state}}</span><br/>
+            </p>
+            <p v-else>
+              <span>
+                <strong>Contact Number: </strong>{{trade.owner.contact_number}}</span><br/>
+              <span>
+                <strong>Name: </strong>{{trade.owner.first_name + ' ' + trade.owner.last_name}}</span><br/>
+              <span>
+                <strong>Adress: </strong>{{trade.owner.city}} {{trade.owner.state}}</span><br/>
             </p>
           </div>
         </div>
@@ -106,17 +117,6 @@
       }
     },
     methods: {
-      getOtherUser (trade) {
-        let id = this.getUser._id
-
-        if (trade.isApproved) {
-          if (trade.owner._id === id) {
-            return trade.trader
-          } else {
-            return trade.owner
-          }
-        }
-      },
       getTradeTitle (trade) {
         let id = this.getUser._id
         if (trade.isApproved) {
@@ -146,18 +146,15 @@
         }
       },
       updateTrade (trade, approved) {
-        trade.isApproved = approved
-        trade.isCompleted = true
-
-        axios.put(this.getAPI.url + '/api/trades/', trade).then((res) => {
+        axios.put(this.getAPI.url + '/api/trades/', {
+          trade: trade,
+          isApproved: approved
+        }).then((res) => {
           if (res.data.redirect) {
             router.push(res.data.redirect)
           } else {
-            this.trades = this.trades.filter((item) => {
-              return item._id !== trade._id
-            })
-
-            this.trades.push(trade)
+            trade.isApproved = approved
+            trade.isCompleted = true
           }
         }).catch(err => {
           console.log(err)
