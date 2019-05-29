@@ -12,14 +12,14 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.1",
+    "body-parser": "^1.18.2",
     "cors": "^2.8.4",
-    "express": "~4.15.2",
+    "express": "~4.15.5",
     "jsonwebtoken": "^8.0.1",
     "mongodb": "^2.2.31",
-    "mongoose": "^4.11.11",
-    "morgan": "^1.8.2",
-    "url-parse": "^1.1.9"
+    "mongoose": "^4.13.17",
+    "morgan": "^1.9.1",
+    "url-parse": "^1.4.3"
   },
   "devDependencies": {
     "eslint-config-standard": "^10.2.1",
